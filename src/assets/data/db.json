@@ -1,0 +1,19 @@
+{
+  "todo-list-api": [
+    {
+      "id": 1,
+      "name": "fake-data-1",
+      "isCompleted": false
+    },
+    {
+      "id": 2,
+      "name": "fake-data-2",
+      "isCompleted": false
+    },
+    {
+      "id": 3,
+      "name": "fake-data-3",
+      "isCompleted": false
+    }
+  ]
+}

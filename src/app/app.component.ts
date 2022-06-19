@@ -1,36 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Todo } from './Todo';
-
+import { TodoListApiService} from './services/todo-list-api.service'
+import { TodoModel } from './models/todo-list-api'
+import { NgForm} from '@angular/forms'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  todos: Todo[] = [];
-  newTodo: string;
 
-  saveTodo(){
-    if(this.newTodo){
-      let todo = new Todo();
-      todo.name = this.newTodo;
-      todo.isCompleted = true
-      this.todos.push(todo);
-      this.newTodo = '';
-    }else{
-      alert('Please enter todo')
+export class AppComponent implements OnInit {
+
+  todo = {} as TodoModel;
+  todos: TodoModel[];
+
+  constructor(private todoService: TodoListApiService) {}
+
+  ngOnInit() {
+    this.getTodos();
+  }
+
+  saveTodo(form: NgForm) {
+
+    if (this.todo.id !== undefined) {
+      this.todoService.updateTodo(this.todo).subscribe(() => {
+        this.cleanForm(form);
+      });
+    } else {
+      this.todoService.saveTodo(this.todo).subscribe(() => {
+        this.cleanForm(form);
+      });
     }
   }
 
-  done(id:number){
-    this.todos[id].isCompleted = !this.todos[id].isCompleted;
+  getTodos() {
+    this.todoService.getTodos().subscribe((todo: TodoModel[]) => {
+      this.todos = todo;
+    });
   }
 
-  remove(id:number){
-    this.todos = this.todos.filter((v,index)=> index !== id);
+  deleteTodo(todo: TodoModel) {
+    this.todoService.deleteTodo(todo).subscribe(() => {
+      this.getTodos();
+    });
   }
 
-  edit(){
-    // 
+  editTodo(todo: TodoModel) {
+    this.todo = { ...todo };
+  }
+
+  cleanForm(form: NgForm) {
+    this.getTodos();
+    form.resetForm();
+    this.todo = {} as TodoModel;
   }
 }

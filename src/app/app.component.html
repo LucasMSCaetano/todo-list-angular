@@ -1,23 +1,44 @@
-<h1 style="text-align: center;">Todo List</h1>
-<br>
 <div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col col-lg-3">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Enter Todo" aria-describedby="button-addon2" [(ngModel)]="newTodo">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="saveTodo()">Add Todo</button>
-      </div>
-      <table class="table table-striped">
-        <tbody>
-          <tr *ngFor="let todo of todos; let i = index">
-            <th scope="row">{{i+1}}</th>
-            <td class="{{(!todo.isCompleted) ? 'done' : ''}}" (click)="done(i)">{{todo.name}}</td>
-            <td style="color: red;font-weight: bold;" (click)="remove(i)">x</td>
-            <td style="color: blue;font-weight: bold;" (click)="edit()">edit</td>
-            <td class="{{(!todo.isCompleted) ? 'done' : ''}}" (click)="done(i)" style="color: green;font-weight: bold;">mark as done</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="card todo-list">
+    <h5 class="card-header">List of todos</h5>
+    <div class="card-body">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let todo  of todos">
+              <td>{{todo.id}}</td>
+              <td>{{todo.name}}</td>
+              <td>
+                <button type="button" class="btn btn-warning btn-sm" (click)="editTodo(todo)">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteTodo(todo)">Delet</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
     </div>
   </div>
+
+  <div class="card add-todo">
+      <h5 class="card-header">Add/Update Todo</h5>
+      <div class="card-body">
+          <form id="add-form" (ngSubmit)="f.form.valid && saveTodo(f)" #f="ngForm" novalidate>
+            <div class="form-group">
+                <label for="model">Name</label>
+                <input type="text" [(ngModel)]="todo.name" id="name" name="name" #model="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" placeholder="Type name of Todo">
+                <!-- <div *ngIf="f.submitted && model.invalid" class="invalid-feedback">
+                    <div *ngIf="model.errors.required">Name is required</div>
+                </div> -->
+            </div>
+  
+            <button type="submit" class="btn btn-primary btn-add-todo">Save</button>
+            <button type="reset" class="btn btn-secondary btn-add-todo" (click)="cleanForm(f)">Cancel</button>
+          </form>
+      </div>
+    </div>
 </div>
