@@ -1,19 +1,25 @@
 {
-  "todo-list-api": [
+  "findAllTodos": [
     {
       "id": 1,
       "name": "fake-data-1",
-      "isCompleted": false
+      "isCompleted": false,
+      "createdAt": "2022-06-20T04:20:03.000Z",
+      "updatedAt": "2022-06-20T04:24:48.000Z"
     },
     {
       "id": 2,
       "name": "fake-data-2",
-      "isCompleted": false
+      "isCompleted": false,
+      "createdAt": "2022-06-20T04:20:03.000Z",
+      "updatedAt": "2022-06-20T04:24:48.000Z"
     },
     {
       "id": 3,
       "name": "fake-data-3",
-      "isCompleted": false
+      "isCompleted": false,
+      "createdAt": "2022-06-20T04:20:03.000Z",
+      "updatedAt": "2022-06-20T04:24:48.000Z"
     }
   ]
 }

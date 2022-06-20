@@ -7,25 +7,26 @@ import { TodoModel } from '../models/todo-list-api'
 @Injectable({
   providedIn: 'root'
 })
+
 export class TodoListApiService {
 
-  url = 'http://localhost:3000/todo-list-api';
+  url = 'http://localhost:3000';
 
   constructor(private httpClient: HttpClient) { }
-  
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
   getTodos(): Observable<TodoModel[]> {
-    return this.httpClient.get<TodoModel[]>(this.url)
-      .pipe(
-        retry(2),
-        catchError(this.handleError))
+    return this.httpClient.get<TodoModel[]>(this.url + '/findAllTodos')
+    .pipe(
+      retry(2),
+      catchError(this.handleError))
   }
 
   getTodoById(id: number): Observable<TodoModel> {
-    return this.httpClient.get<TodoModel>(this.url + '/' + id)
+    return this.httpClient.get<TodoModel>(this.url + '/findOneTodo/' + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -33,7 +34,7 @@ export class TodoListApiService {
   }
 
   saveTodo(todo: TodoModel): Observable<TodoModel> {
-    return this.httpClient.post<TodoModel>(this.url, JSON.stringify(todo), this.httpOptions)
+    return this.httpClient.post<TodoModel>(this.url, + '/createTodo' + JSON.stringify(todo), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -41,7 +42,7 @@ export class TodoListApiService {
   }
 
   updateTodo(todo: TodoModel): Observable<TodoModel> {
-    return this.httpClient.put<TodoModel>(this.url + '/' + todo.id, JSON.stringify(todo), this.httpOptions)
+    return this.httpClient.put<TodoModel>(this.url + '/updateTodo/' + todo.id, JSON.stringify(todo), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -49,7 +50,7 @@ export class TodoListApiService {
   }
 
   deleteTodo(todo: TodoModel) {
-    return this.httpClient.delete<TodoModel>(this.url + '/' + todo.id, this.httpOptions)
+    return this.httpClient.delete<TodoModel>(this.url + '/deletedTodo/' + todo.id, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
