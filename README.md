@@ -7,6 +7,14 @@
 ### Instalando o projeto
 Caso queira testa-lo em sua máquina, siga os passos abaixo:
 
+**Inicie o servidor node**
+
+Para isso basta seguir o passo a passo descrito no repositório:
+
+```
+https://github.com/LucasMSCaetano/todo-list-angular-api
+```
+
 **Clone este Repositorio**
 
 ```
