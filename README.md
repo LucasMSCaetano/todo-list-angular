@@ -1,27 +1,49 @@
-# TodoListAngular
+# TODO LIST COM ANGULAR
+<p align="center">
+  <img src="src/img/todo.png">
+  <br/>
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.1.
+### Instalando o projeto
+Caso queira testa-lo em sua máquina, siga os passos abaixo:
 
-## Development server
+**Clone este Repositorio**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```
+$ git clone https://github.com/LucasMSCaetano/todo-list-angular.git
 
-## Code scaffolding
+$ cd todo-list-angular
+```
+**Crie as variáveis de ambiente**
+```
+crie no diretorio raiz o arquivo .env, segue um exemplo de como criar o arquivo via cmd (windows)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+$ copy con .env
+$ cd .env
 
-## Build
+agora sete as variáveis de ambiente conforme as abaixo:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+DATABASE_URL=
+APP_NAME=
+PORT=
 
-## Running unit tests
+```
+**Instale as dependências**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+$ yarn
+```
 
-## Running end-to-end tests
+_ou_
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+$ npm install
+```
 
-## Further help
+**Agora basta executar o comando**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+$ ng serve
+```
+
+
